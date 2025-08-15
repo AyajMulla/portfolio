@@ -1,11 +1,13 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, MapPin, Phone, Send } from "lucide-react"
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Instagram } from "lucide-react"
 import emailjs from "emailjs-com"
 
 export function Contact() {
@@ -24,7 +26,7 @@ export function Contact() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     )
 
     if (sectionRef.current) {
@@ -46,7 +48,7 @@ export function Contact() {
           email: formData.email,
           message: formData.message,
         },
-        "VTVTS2eawMHwtGUJM" // replace with your EmailJS public key
+        "VTVTS2eawMHwtGUJM", // replace with your EmailJS public key
       )
       .then(() => {
         alert("Message sent successfully!")
@@ -58,9 +60,7 @@ export function Contact() {
       })
   }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -68,23 +68,16 @@ export function Contact() {
   }
 
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"
-    >
+    <section id="contact" ref={sectionRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div
           className={`transition-all duration-800 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="font-serif text-4xl font-bold text-center text-gray-900 mb-4">
-            Let's Work Together
-          </h2>
+          <h2 className="font-serif text-4xl font-bold text-center text-gray-900 mb-4">Let's Work Together</h2>
           <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Have a project in mind? I'd love to hear about it. Let's discuss how
-            we can bring your ideas to life.
+            Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your ideas to life.
           </p>
         </div>
 
@@ -92,15 +85,11 @@ export function Contact() {
           {/* Contact Info */}
           <div
             className={`transition-all duration-800 delay-200 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-10"
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           >
             <Card className="p-8 bg-white shadow-lg">
-              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-6">
-                Get In Touch
-              </h3>
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
@@ -129,6 +118,35 @@ export function Contact() {
                     <p className="text-gray-600">Ichalkaranji</p>
                   </div>
                 </div>
+                <div className="pt-6 border-t border-gray-200">
+                  <p className="font-medium text-gray-900 mb-4">Follow Me</p>
+                  <div className="flex gap-4">
+                    <a
+                      href="https://github.com/AyajMulla"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center hover:bg-orange-200 transition-colors duration-200"
+                    >
+                      <Github className="h-6 w-6 text-orange-600" />
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/ayajmulla"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center hover:bg-orange-200 transition-colors duration-200"
+                    >
+                      <Linkedin className="h-6 w-6 text-orange-600" />
+                    </a>
+                    <a
+                      href="https://instagram.com/mr_j_oker_07"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center hover:bg-orange-200 transition-colors duration-200"
+                    >
+                      <Instagram className="h-6 w-6 text-orange-600" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </Card>
           </div>
@@ -136,9 +154,7 @@ export function Contact() {
           {/* Contact Form */}
           <div
             className={`transition-all duration-800 delay-400 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-10"
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
             }`}
           >
             <Card className="p-8 bg-white shadow-lg">
@@ -185,10 +201,7 @@ export function Contact() {
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          <p className="text-gray-600">
-            © 2025 Ayaj. Built with ❤️ passion for great design
-            ✨
-          </p>
+          <p className="text-gray-600">© 2025 Ayaj. Built with ❤️ passion for great design ✨</p>
         </div>
       </div>
     </section>

@@ -38,9 +38,10 @@ export function About() {
             className={`transition-all duration-800 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
           >
             <div className="relative">
-              <div className="w-80 h-80 mx-auto bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center overflow-hidden">
-                <img src="/innovation.jpg" alt="Ayaj working" className="w-full h-full object-cover" />
-              </div>
+             <div className="w-full h-auto mx-auto bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl overflow-hidden">
+  <img src="/innovation1.jpg" alt="Ayaj working" className="w-full h-auto object-cover" />
+</div>
+
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-orange-400 rounded-full animate-float"></div>
               <div
                 className="absolute -bottom-6 -left-6 w-16 h-16 bg-gray-900 rounded-full animate-float"
