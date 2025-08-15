@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { Card } from "@/components/ui/card"
 
 export function About() {
@@ -38,9 +39,15 @@ export function About() {
             className={`transition-all duration-800 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
           >
             <div className="relative">
-             <div className="w-full h-auto mx-auto bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl overflow-hidden">
-  <img src="/innovation1.jpg" alt="Ayaj working" className="w-full h-auto object-cover" />
-</div>
+              <div className="w-full h-auto mx-auto bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl overflow-hidden">
+                <Image
+                  src="/innovation1.jpg"
+                  alt="Ayaj working"
+                  width={400}
+                  height={300}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
 
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-orange-400 rounded-full animate-float"></div>
               <div
@@ -56,13 +63,13 @@ export function About() {
             <Card className="p-8 bg-gray-50 border-0 shadow-xl">
               <h3 className="font-serif text-2xl font-bold text-gray-900 mb-6">Passionate Web Developer</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Currently pursuing B.Tech in Computer Science Engineering from Dr. D. Y. Patil Pratishthan's College
-                with a GPA of 7.51. I have hands-on experience in building responsive web applications and solving
-                complex problems through innovative solutions.
+                Currently pursuing B.Tech in Computer Science Engineering from Dr. D. Y. Patil Pratishthan&apos;s
+                College with a GPA of 7.51. I have hands-on experience in building responsive web applications and
+                solving complex problems through innovative solutions.
               </p>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 My journey includes working as a Web Developer at Anvistar ITS Pvt Ltd and OPERA IT Solution, where I
-                developed custom web applications and gained expertise in modern web technologies. I'm committed to
+                developed custom web applications and gained expertise in modern web technologies. I&apos;m committed to
                 delivering high-quality, user-centric digital experiences.
               </p>
               <div className="flex flex-wrap gap-3">
