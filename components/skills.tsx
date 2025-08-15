@@ -75,7 +75,7 @@ export function Skills() {
         >
           <h2 className="font-serif text-4xl font-bold text-center text-gray-900 mb-4">Skills & Experience</h2>
           <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            I'm constantly learning and improving my skills to stay current with the latest technologies and best
+            I&apos;m constantly learning and improving my skills to stay current with the latest technologies and best
             practices in frontend development.
           </p>
         </div>

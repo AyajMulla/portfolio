@@ -68,13 +68,12 @@ export function Education() {
         </div>
 
         <div className="space-y-8 mb-12">
-          {educationData.map((item, index) => {
+          {educationData.map((item) => {
             const IconComponent = item.icon
             return (
               <div
                 key={item.title}
                 className={`transition-all duration-800 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                style={{ animationDelay: `${index * 200}ms` }}
               >
                 <Card className="p-6 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-orange-500">
                   <div className="flex items-start gap-4">

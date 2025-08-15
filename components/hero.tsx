@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { Download, Sparkles } from "lucide-react"
+import Image from "next/image"
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false)
@@ -14,7 +15,7 @@ export function Hero() {
   const [neuralConnections, setNeuralConnections] = useState<Array<{ from: number; to: number; active: boolean }>>([])
   const [isMounted, setIsMounted] = useState(false)
 
-  const languages = ["HTML", "CSS", "JavaScript", "Python", "Java", "PHP", "C++", "React"]
+  const languages = useMemo(() => ["HTML", "CSS", "JavaScript", "Python", "Java", "PHP", "C++", "React"], [])
 
   const languageData = [
     { name: "HTML", color: "#E34F26", quantum: 0 },
@@ -66,7 +67,7 @@ export function Hero() {
       clearInterval(quantumInterval)
       clearInterval(neuralInterval)
     }
-  }, [])
+  }, [languageData.length])
 
   useEffect(() => {
     if (!isMounted) return
@@ -105,13 +106,6 @@ export function Hero() {
 
     return () => clearTimeout(timeoutId)
   }, [displayText, isTyping, currentLanguageIndex, languages])
-
-  const scrollToProjects = () => {
-    const element = document.getElementById("projects")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
 
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
@@ -233,7 +227,13 @@ export function Hero() {
             <div className="relative w-full flex justify-center">
               <div className="relative">
                 <div className="w-96 h-96 mx-auto rounded-full overflow-hidden shadow-lg relative z-10">
-                  <img src="/AJ.jpg" alt="Ayaj Mulla - Web Developer" className="w-full h-auto object-contain" />
+                  <Image
+                    src="/AJ.jpg"
+                    alt="Ayaj Mulla - Web Developer"
+                    width={384}
+                    height={384}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {isMounted && (

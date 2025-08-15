@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
+import Image from "next/image"
 
 const projects = [
   {
@@ -79,9 +80,11 @@ export function Projects() {
             >
               <Card className="overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
+                    width={400}
+                    height={192}
                     className={`w-full h-48 object-cover transition-transform duration-300 ${
                       hoveredProject === index ? "scale-110" : "scale-100"
                     }`}
