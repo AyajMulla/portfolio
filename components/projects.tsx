@@ -11,7 +11,8 @@ const projects = [
       "The Goal of the project is to provide diploma study material to new Students. My contribution is Designing the software using HTML, CSS, JS, Java and Android Studio SDK Java.",
     image: "/diploma.jpg",
     tech: ["Java", "Android Studio"],
-   
+    github: "#",
+    live: "#",
   },
   {
     title: "Meal Planner",
@@ -19,7 +20,8 @@ const projects = [
       "The Goal is to get the proper diet and nutrition for body because Health is Wealth. Built using modern web technologies with focus on user experience.",
     image: "/meal.jpg",
     tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    
+    github: "#",
+    live: "#",
   },
   {
     title: "Faculty Profile Generator",
@@ -27,7 +29,8 @@ const projects = [
       "The Goal of this project is to provide the information of Staff in one place. A comprehensive system for managing faculty information and profiles.",
     image: "/Faculty.png",
     tech: ["HTML", "CSS", "PHP", "MySQL"],
-    
+    github: "#",
+    live: "#",
   },
 ]
 
