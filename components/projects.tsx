@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
 
 const projects = [
   {
@@ -92,9 +90,7 @@ export function Projects() {
                     className={`absolute inset-0 bg-orange-500/80 flex items-center justify-center gap-4 transition-opacity duration-300 ${
                       hoveredProject === index ? "opacity-100" : "opacity-0"
                     }`}
-                  >
-                    
-                  </div>
+                  ></div>
                 </div>
 
                 <div className="p-6">

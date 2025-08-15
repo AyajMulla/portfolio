@@ -55,7 +55,6 @@ export function Contact() {
         setFormData({ name: "", email: "", message: "" })
       })
       .catch((error) => {
-        console.error("Email send error:", error)
         alert("Failed to send message. Please try again later.")
       })
   }
