@@ -12,6 +12,7 @@ export function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [quantumPhase, setQuantumPhase] = useState(0)
   const [neuralConnections, setNeuralConnections] = useState<Array<{ from: number; to: number; active: boolean }>>([])
+  const [isMounted, setIsMounted] = useState(false)
 
   const languages = ["HTML", "CSS", "JavaScript", "Python", "Java", "PHP", "C++", "React"]
 
@@ -27,7 +28,9 @@ export function Hero() {
   ]
 
   useEffect(() => {
+    setIsMounted(true)
     setIsVisible(true)
+
     setParticles(
       Array.from({ length: 8 }, () => ({
         left: Math.random() * 100,
@@ -66,12 +69,14 @@ export function Hero() {
   }, [])
 
   useEffect(() => {
+    if (!isMounted) return
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+  }, [isMounted])
 
   useEffect(() => {
     const currentLanguage = languages[currentLanguageIndex]
@@ -115,17 +120,18 @@ export function Hero() {
       </div>
 
       <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/30 rounded-full"
-            style={{
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-              animationDelay: `${particle.delay}s`,
-            }}
-          />
-        ))}
+        {isMounted &&
+          particles.map((particle, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white/30 rounded-full"
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                animationDelay: `${particle.delay}s`,
+              }}
+            />
+          ))}
 
         {languages.slice(0, 4).map((lang, i) => (
           <div
@@ -230,37 +236,42 @@ export function Hero() {
                   <img src="/AJ.jpg" alt="Ayaj Mulla - Web Developer" className="w-full h-auto object-contain" />
                 </div>
 
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ transform: "scale(1.5)" }}>
-                  {neuralConnections.map((conn, i) => {
-                    const angle1 = (conn.from / languageData.length) * 2 * Math.PI
-                    const angle2 = (conn.to / languageData.length) * 2 * Math.PI
-                    const radius = 200
-                    const centerX = 192
-                    const centerY = 192
+                {isMounted && (
+                  <svg
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                    style={{ transform: "scale(1.5)" }}
+                  >
+                    {neuralConnections.map((conn, i) => {
+                      const angle1 = (conn.from / languageData.length) * 2 * Math.PI
+                      const angle2 = (conn.to / languageData.length) * 2 * Math.PI
+                      const radius = 200
+                      const centerX = 192
+                      const centerY = 192
 
-                    const x1 = centerX + Math.cos(angle1) * radius
-                    const y1 = centerY + Math.sin(angle1) * radius
-                    const x2 = centerX + Math.cos(angle2) * radius
-                    const y2 = centerY + Math.sin(angle2) * radius
+                      const x1 = centerX + Math.cos(angle1) * radius
+                      const y1 = centerY + Math.sin(angle1) * radius
+                      const x2 = centerX + Math.cos(angle2) * radius
+                      const y2 = centerY + Math.sin(angle2) * radius
 
-                    return (
-                      <line
-                        key={i}
-                        x1={x1}
-                        y1={y1}
-                        x2={x2}
-                        y2={y2}
-                        stroke={conn.active ? "#ffffff80" : "#ffffff20"}
-                        strokeWidth={conn.active ? "2" : "1"}
-                        className="transition-all duration-500"
-                        style={{
-                          filter: conn.active ? "drop-shadow(0 0 4px #ffffff80)" : "none",
-                          animation: conn.active ? "neural-pulse 2s ease-in-out infinite" : "none",
-                        }}
-                      />
-                    )
-                  })}
-                </svg>
+                      return (
+                        <line
+                          key={i}
+                          x1={x1}
+                          y1={y1}
+                          x2={x2}
+                          y2={y2}
+                          stroke={conn.active ? "#ffffff80" : "#ffffff20"}
+                          strokeWidth={conn.active ? "2" : "1"}
+                          className="transition-all duration-500"
+                          style={{
+                            filter: conn.active ? "drop-shadow(0 0 4px #ffffff80)" : "none",
+                            animation: conn.active ? "neural-pulse 2s ease-in-out infinite" : "none",
+                          }}
+                        />
+                      )
+                    })}
+                  </svg>
+                )}
 
                 <div className="absolute inset-0">
                   {languageData.map((lang, i) => {
@@ -271,7 +282,7 @@ export function Hero() {
                     const centerX = 192
                     const centerY = 192
                     const mouseDistance =
-                      typeof window !== "undefined"
+                      isMounted && typeof window !== "undefined"
                         ? Math.sqrt(
                             Math.pow(mousePos.x - (centerX + window.innerWidth / 2 - 384), 2) +
                               Math.pow(mousePos.y - (centerY + window.innerHeight / 2 - 192), 2),
@@ -309,18 +320,19 @@ export function Hero() {
                           >
                             <span className="relative z-10">{lang.name}</span>
 
-                            {[...Array(3)].map((_, pi) => (
-                              <div
-                                key={pi}
-                                className="absolute w-1 h-1 bg-white rounded-full"
-                                style={{
-                                  left: `${50 + Math.sin(quantumPhase * 2 + pi) * 30}%`,
-                                  top: `${50 + Math.cos(quantumPhase * 2 + pi) * 30}%`,
-                                  opacity: Math.sin(quantumPhase + pi) * 0.5 + 0.5,
-                                  animation: `quantum-particle 2s ease-in-out infinite ${pi * 0.5}s`,
-                                }}
-                              />
-                            ))}
+                            {isMounted &&
+                              [...Array(3)].map((_, pi) => (
+                                <div
+                                  key={pi}
+                                  className="absolute w-1 h-1 bg-white rounded-full"
+                                  style={{
+                                    left: `${50 + Math.sin(quantumPhase * 2 + pi) * 30}%`,
+                                    top: `${50 + Math.cos(quantumPhase * 2 + pi) * 30}%`,
+                                    opacity: Math.sin(quantumPhase + pi) * 0.5 + 0.5,
+                                    animation: `quantum-particle 2s ease-in-out infinite ${pi * 0.5}s`,
+                                  }}
+                                />
+                              ))}
 
                             <div
                               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
