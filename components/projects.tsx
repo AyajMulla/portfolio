@@ -8,7 +8,7 @@ const projects = [
   {
     title: "Diploma Aspirant",
     description:
-      "The Goal of the project is to provide diploma study material to new Students. My contribution is Designing the software using HTML, CSS, JS, Java and Android Studio SDK Java.",
+      "The Goal of the project is to provide diploma study material to new Students. My contribution is Designing the software or Application.",
     image: "/diploma.jpg",
     tech: ["Java", "Android Studio"],
     github: "#",
