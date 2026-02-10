@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Instagram } from "lucide-react"
 import emailjs from "emailjs-com"
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
 
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false)
@@ -46,12 +46,11 @@ export function Contact() {
         "VTVTS2eawMHwtGUJM",
       )
       .then(() => {
-        // alert("Message sent successfully!")
         toast.success("Message sent successfully!")
         setFormData({ name: "", email: "", message: "" })
       })
       .catch(() => {
-        alert("Failed to send message. Please try again later.")
+        toast.error("Failed to send message. Please try again later.")
       })
   }
 
@@ -63,7 +62,13 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className={`py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="font-serif text-4xl font-bold text-center text-gray-900 mb-4">
           Let&apos;s Work Together
@@ -103,11 +108,31 @@ export function Contact() {
           {/* Contact Form */}
           <Card className="p-8 bg-white shadow-lg">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <Input name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required />
-              <Input name="email" type="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required />
-              <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required />
+              <Input
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              />
+              <Input
+                name="email"
+                type="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+              <Textarea
+                name="message"
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+              />
               <Button type="submit" className="w-full bg-orange-500 text-white">
-                <Send className="mr-2 h-4 w-4" /> Send Message
+                <Send className="mr-2 h-4 w-4" />
+                Send Message
               </Button>
             </form>
           </Card>
