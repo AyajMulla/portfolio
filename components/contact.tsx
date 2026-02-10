@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -9,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Instagram } from "lucide-react"
 import emailjs from "emailjs-com"
+import {toast} from "react-toastify"
 
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false)
@@ -22,17 +22,12 @@ export function Contact() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.3 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -41,20 +36,21 @@ export function Contact() {
 
     emailjs
       .send(
-        "service_zq0qns7", // replace with your EmailJS service ID
-        "template_u54be1m", // replace with your EmailJS template ID
+        "service_zq0qns7",
+        "template_u54be1m",
         {
           name: formData.name,
           email: formData.email,
           message: formData.message,
         },
-        "VTVTS2eawMHwtGUJM", // replace with your EmailJS public key
+        "VTVTS2eawMHwtGUJM",
       )
       .then(() => {
-        alert("Message sent successfully!")
+        // alert("Message sent successfully!")
+        toast.success("Message sent successfully!")
         setFormData({ name: "", email: "", message: "" })
       })
-      .catch((error) => {
+      .catch(() => {
         alert("Failed to send message. Please try again later.")
       })
   }
@@ -69,139 +65,57 @@ export function Contact() {
   return (
     <section id="contact" ref={sectionRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        <div
-          className={`transition-all duration-800 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <h2 className="font-serif text-4xl font-bold text-center text-gray-900 mb-4">Let's Work Together</h2>
-          <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your ideas to life.
-          </p>
-        </div>
+        <h2 className="font-serif text-4xl font-bold text-center text-gray-900 mb-4">
+          Let&apos;s Work Together
+        </h2>
+
+        <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          Have a project in mind? I&apos;d love to hear about it. Let&apos;s discuss how we can bring your ideas to life.
+        </p>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div
-            className={`transition-all duration-800 delay-200 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-            }`}
-          >
-            <Card className="p-8 bg-white shadow-lg">
-              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-gray-600">ayajmulla2341@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                    <Phone className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Phone</p>
-                    <p className="text-gray-600">+91 935 940 5574</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                    <MapPin className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Location</p>
-                    <p className="text-gray-600">Ichalkaranji</p>
-                  </div>
-                </div>
-                <div className="pt-6 border-t border-gray-200">
-                  <p className="font-medium text-gray-900 mb-4">Follow Me</p>
-                  <div className="flex gap-4">
-                    <a
-                      href="https://github.com/AyajMulla"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center hover:bg-orange-200 transition-colors duration-200"
-                    >
-                      <Github className="h-6 w-6 text-orange-600" />
-                    </a>
-                    <a
-                      href="https://linkedin.com/in/ayajmulla"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center hover:bg-orange-200 transition-colors duration-200"
-                    >
-                      <Linkedin className="h-6 w-6 text-orange-600" />
-                    </a>
-                    <a
-                      href="https://instagram.com/mr_j_oker_07"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center hover:bg-orange-200 transition-colors duration-200"
-                    >
-                      <Instagram className="h-6 w-6 text-orange-600" />
-                    </a>
-                  </div>
-                </div>
+          <Card className="p-8 bg-white shadow-lg">
+            <h3 className="font-serif text-2xl font-bold mb-6">Get In Touch</h3>
+
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <Mail className="text-orange-600" />
+                <span>ayajmulla2341@gmail.com</span>
               </div>
-            </Card>
-          </div>
+              <div className="flex items-center gap-4">
+                <Phone className="text-orange-600" />
+                <span>+91 935 940 5574</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <MapPin className="text-orange-600" />
+                <span>Ichalkaranji</span>
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <Github />
+                <Linkedin />
+                <Instagram />
+              </div>
+            </div>
+          </Card>
 
           {/* Contact Form */}
-          <div
-            className={`transition-all duration-800 delay-400 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-            }`}
-          >
-            <Card className="p-8 bg-white shadow-lg">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <Input
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full"
-                  required
-                />
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full"
-                  required
-                />
-                <Textarea
-                  name="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className="w-full min-h-32"
-                  required
-                />
-                <Button
-                  type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 font-medium transition-all duration-200 hover:scale-105"
-                >
-                  <Send className="h-4 w-4 mr-2" />
-                  Send Message
-                </Button>
-              </form>
-            </Card>
-          </div>
+          <Card className="p-8 bg-white shadow-lg">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <Input name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required />
+              <Input name="email" type="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required />
+              <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required />
+              <Button type="submit" className="w-full bg-orange-500 text-white">
+                <Send className="mr-2 h-4 w-4" /> Send Message
+              </Button>
+            </form>
+          </Card>
         </div>
 
-        <div
-          className={`text-center mt-16 transition-all duration-800 delay-600 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <p className="text-gray-600">© 2025 Ayaj. Built with ❤️ passion for great design ✨</p>
-        </div>
+        <p className="text-center mt-16 text-gray-600">
+          © 2025 Ayaj. Built with ❤️ passion for great design ✨
+        </p>
       </div>
     </section>
   )

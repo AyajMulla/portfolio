@@ -158,12 +158,12 @@ export function Hero() {
                 className={`transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                  I'm{" "}
-                  <span className="text-gray-900 relative inline-block">
-                    <span className="relative z-10">Ayaj</span>
-                    <span className="absolute inset-0 bg-white/20 rounded-lg transform -skew-x-12 animate-pulse"></span>
-                  </span>
-                </h1>
+  I&apos;m{" "}
+  <span className="text-gray-900 relative inline-block">
+    <span className="relative z-10">Ayaj</span>
+  </span>
+</h1>
+
               </div>
 
               <div

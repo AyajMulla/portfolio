@@ -1,6 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import "./globals.css"
 
 const inter = Inter({
@@ -20,17 +22,31 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "AYAJ MULLA - Frontend Developer",
   description: "Creative Frontend Developer specializing in modern web experiences",
-  
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} antialiased`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+
+        {/* Toasts */}
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="light"
+          aria-label="Notifications"
+        />
+      </body>
     </html>
   )
 }

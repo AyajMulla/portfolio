@@ -101,17 +101,18 @@ export function Education() {
         >
           <h3 className="font-serif text-2xl font-bold text-center text-gray-900 mb-8">Certifications</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {certifications.map((cert, index) => (
-              <Card
-                key={cert}
-                className="p-4 bg-orange-50 border-orange-200 hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-orange-600 flex-shrink-0" />
-                  <p className="text-gray-800 font-medium text-sm">{cert}</p>
-                </div>
-              </Card>
-            ))}
+            {certifications.map((cert) => (
+  <Card
+    key={cert}
+    className="p-4 bg-orange-50 border-orange-200 hover:shadow-md transition-shadow duration-300"
+  >
+    <div className="flex items-center gap-3">
+      <Award className="h-5 w-5 text-orange-600 flex-shrink-0" />
+      <p className="text-gray-800 font-medium text-sm">{cert}</p>
+    </div>
+  </Card>
+))}
+
           </div>
         </div>
       </div>
